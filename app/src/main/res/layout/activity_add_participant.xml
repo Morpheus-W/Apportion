@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.unbelievable.tangweny.apportion.activity.AddParticipantActivity">
-
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_menu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
     <RelativeLayout
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
@@ -29,6 +29,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/add_button"
         android:layout_centerInParent="true"
         android:layout_alignParentBottom="true"
         android:text="确定"

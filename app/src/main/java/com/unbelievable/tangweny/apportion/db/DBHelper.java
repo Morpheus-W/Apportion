@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private Context mcontext;
 	//参与者表名
 	public static final String PARTICIPANT = "participant_table";
-
+	private SQLiteDatabase mDefaultWritableDatabase = null;
 	public DBHelper(Context context) {
 		super(context, sqlite, null, factory);
 		this.mcontext = context;
@@ -26,22 +26,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		/*创建参与者表*/
+		this.mDefaultWritableDatabase = db;
+		/*创建参与者表,这里在第一次创建时，涉及多线程调用db*/
 		createParticipantTable();
 	}
 
 	/**
-	 * 插入标题，时间，速度，纬度，经度，表名
+	 * 插入合伙人，时间，姓名，账单，是否结账
 	 */
 	public void insertTalbe(String time, String name, double check,
-			int isCheck, String tablename) {
-		SQLiteDatabase db = this.getWritableDatabase();
+			int isCheck) {
+		SQLiteDatabase db = this.getWritableDatabase();;
 		ContentValues cv = new ContentValues();
 		cv.put("parTime", time);
 		cv.put("parName", name);
 		cv.put("check", check);
 		cv.put("isCheck", isCheck);
-		db.insert(tablename, null, cv);
+		db.insert(PARTICIPANT, null, cv);
 	}
 	/*
 	 * 通用查询方法
@@ -54,11 +55,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+		this.mDefaultWritableDatabase = db;
 	}
 
 	public void createParticipantTable() {
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();;
 		StringBuffer sqlname = new StringBuffer();
 		sqlname.append("create table if not exists ");
 		sqlname.append(" ");
@@ -82,7 +83,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	 */
 	public void bulkInsert(String tableName,
 						   ArrayList<ContentValues> valuesArr){
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();;
 		db.beginTransaction();
 		for (ContentValues val : valuesArr){
 			db.insert(tableName,null,val);
@@ -93,11 +94,27 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public void deleteTable() {
-		SQLiteDatabase db = this.getWritableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();;
 		try {
 			db.execSQL("drop table " + PARTICIPANT);
 		} catch (Exception e) {
 			LogUtil.e("更改表数据 ", e.getMessage());
 		}
+	}
+
+	@Override
+	public SQLiteDatabase getWritableDatabase() {
+		final SQLiteDatabase db;
+		if(mDefaultWritableDatabase != null){
+			db = mDefaultWritableDatabase;
+		} else {
+			db = super.getWritableDatabase();
+		}
+		return db;
+	}
+
+	@Override
+	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		this.mDefaultWritableDatabase = db;
 	}
 }

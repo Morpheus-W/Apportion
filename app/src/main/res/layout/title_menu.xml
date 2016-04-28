@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@color/menu_color"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
+
+    android:id="@+id/return_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerInParent="true">
+
+    <ImageView
+        android:id="@+id/return_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:src="@mipmap/back_white" />
+
+    <TextView
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/return_iv"
+        android:text="@string/back2menu"
+        android:textSize="@dimen/sp_20" />
+</RelativeLayout>
+
+<TextView
+    android:id="@+id/title_name"
+    android:textColor="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="@string/title"
+    android:textSize="@dimen/sp_20" />
+</RelativeLayout>
