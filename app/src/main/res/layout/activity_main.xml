@@ -72,11 +72,11 @@
                 android:src="@mipmap/pull_down" />
         </RelativeLayout>
         <!--具体选择参与人列表-->
-        <LinearLayout
+        <com.unbelievable.tangweny.apportion.view.FixGridLayout
             android:id="@+id/participant_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
             android:id="@+id/check_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" />
+            android:orientation="vertical" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

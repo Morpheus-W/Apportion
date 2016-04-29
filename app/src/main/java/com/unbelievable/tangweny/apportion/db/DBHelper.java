@@ -34,15 +34,16 @@ public class DBHelper extends SQLiteOpenHelper {
 	/**
 	 * 插入合伙人，时间，姓名，账单，是否结账
 	 */
-	public void insertTalbe(String time, String name, double check,
+	public void insertTalbe(String time, String name, double consume,
 			int isCheck) {
-		SQLiteDatabase db = this.getWritableDatabase();;
+		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put("parTime", time);
 		cv.put("parName", name);
-		cv.put("check", check);
+		cv.put("consume", consume);
 		cv.put("isCheck", isCheck);
-		db.insert(PARTICIPANT, null, cv);
+		long result = db.insert(PARTICIPANT, null, cv);
+		LogUtil.d("insert result ",result);
 	}
 	/*
 	 * 通用查询方法
@@ -65,11 +66,11 @@ public class DBHelper extends SQLiteOpenHelper {
 		sqlname.append(" ");
 		sqlname.append(PARTICIPANT);
 		sqlname.append(
-				"participantId    INTEGER PRIMARY KEY," +
+				"(participantId    INTEGER PRIMARY KEY," +
 						"parName   string," +
 						"parTime   string," +
-						"check   number," +
-						"isCheck    number)");
+						"consume   double," +
+						"isCheck    INTEGER);");
 		String b = sqlname.toString();
 		try {
 			db.execSQL(b);
