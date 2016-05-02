@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.unbelievable.tangweny.apportion.activity.StatisticsActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_menu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ListView
+        android:layout_below="@id/title"
+        android:id="@+id/detail_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/item_devider"
+        android:dividerHeight="@dimen/dp_0point4"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+</RelativeLayout>

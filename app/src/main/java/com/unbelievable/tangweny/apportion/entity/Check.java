@@ -7,11 +7,14 @@ import android.os.Parcelable;
 /**
  * Created by tangweny on 2016/2/24.
  */
-public class Participant implements Parcelable {
+public class Check implements Parcelable {
 
     private int parId;
     private String parTime;
     private String parName;
+    private double consume;
+    private int isCheck;
+    private String remark;
 
     public int getParId() {
         return parId;
@@ -37,6 +40,29 @@ public class Participant implements Parcelable {
         this.parName = parName;
     }
 
+    public double getConsume() {
+        return consume;
+    }
+
+    public void setConsume(double consume) {
+        this.consume = consume;
+    }
+
+    public int getIsCheck() {
+        return isCheck;
+    }
+
+    public void setIsCheck(int isCheck) {
+        this.isCheck = isCheck;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     @Override
     public int describeContents() {
@@ -48,25 +74,31 @@ public class Participant implements Parcelable {
         dest.writeInt(parId);
         dest.writeString(parTime);
         dest.writeString(parName);
+        dest.writeDouble(consume);
+        dest.writeInt(isCheck);
+        dest.writeString(remark);
     }
-    public static final Creator<Participant> CREATOR = new Creator<Participant>(){
-        public Participant createFromParcel(Parcel in)
+    public static final Creator<Check> CREATOR = new Creator<Check>(){
+        public Check createFromParcel(Parcel in)
         {
-            return new Participant(in);
+            return new Check(in);
         }
 
-        public Participant[] newArray(int size)
+        public Check[] newArray(int size)
         {
-            return new Participant[size];
+            return new Check[size];
         }
     };
-    private Participant(Parcel in)
+    private Check(Parcel in)
     {
         this.parId = in.readInt();
         this.parTime = in.readString();
         this.parName = in.readString();
+        this.consume = in.readDouble();
+        this.isCheck = in.readInt();
+        this.remark = in.readString();
     }
-    public Participant(){
+    public Check(){
 
     }
 }

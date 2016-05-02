@@ -6,12 +6,5 @@
     <CheckBox
         android:id="@+id/single_checkbox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/participant" />
-    <TextView
-        android:id="@+id/single_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/single_checkbox"
-        android:text="全部" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>

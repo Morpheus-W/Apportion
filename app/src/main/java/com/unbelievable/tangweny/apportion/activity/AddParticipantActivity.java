@@ -39,8 +39,7 @@ public class AddParticipantActivity extends AppCompatActivity
             String name = nameET.getText().toString().trim();
             if (!name.equals("")){
                 /*添加至数据库中*/
-                dbHelper.insertTalbe(TimeUtil.getDateTime(System.currentTimeMillis()),
-                        name,0,0);
+                dbHelper.insertParticipant(TimeUtil.getDateTime(System.currentTimeMillis()),name);
                 ToastUtil.show(mContext,"添加成功...");
                 nameET.setText("");
             }
